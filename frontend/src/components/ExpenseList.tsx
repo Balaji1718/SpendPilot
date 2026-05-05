@@ -66,7 +66,7 @@ export default function ExpenseList({ expenses, loading, onDeleted }: Props) {
               className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 transition-colors group"
             >
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-foreground truncate">{exp.description}</p>
+                <p className="text-sm font-medium text-foreground truncate">{exp.title || exp.description}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-xs px-2 py-0.5 rounded-full ${CATEGORY_COLORS[exp.category] || CATEGORY_COLORS.Other}`}>
                     <Tag className="w-3 h-3 inline mr-1" />

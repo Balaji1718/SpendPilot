@@ -12,23 +12,36 @@ import { db } from "@/lib/firebase";
 
 export interface Expense {
   id: string;
+  title?: string;
   amount: number;
   category: string;
   description: string;
+  note?: string;
   date: string;
   createdAt: Date;
 }
 
 export async function addExpense(
   userId: string,
-  data: { amount: number; category: string; description: string; date?: string }
+  data: {
+    amount: number;
+    category: string;
+    description?: string;
+    title?: string;
+    note?: string;
+    date?: string;
+  }
 ) {
   const ref = collection(db, "users", userId, "expenses");
   const now = new Date();
+  const title = data.title || data.description || data.category;
+  const description = data.description || title;
   return addDoc(ref, {
     amount: data.amount,
     category: data.category,
-    description: data.description,
+    title,
+    description,
+    note: data.note || "",
     date: data.date || now.toISOString().split("T")[0],
     createdAt: Timestamp.now(),
   });
