@@ -17,7 +17,7 @@ execSync("npm install", {
 });
 
 console.log("Installing frontend dependencies...");
-execSync("npm install", {
+execSync("npm install --include=dev", {
   cwd: path.join(rootDir, "frontend"),
   stdio: "inherit",
 });
