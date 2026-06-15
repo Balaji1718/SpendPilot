@@ -64,7 +64,7 @@ export default function Login() {
           <p className="text-muted-foreground mt-1">Your AI financial co-pilot</p>
         </div>
 
-        <div className="bg-card rounded-2xl shadow-card p-8 border border-border">
+        <div className="bg-card rounded-2xl shadow-card p-6 sm:p-8 border border-border">
           <div className="flex mb-6 bg-muted rounded-xl p-1">
             {["Sign In", "Sign Up"].map((label, i) => (
               <button

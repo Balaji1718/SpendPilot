@@ -57,7 +57,7 @@ export default function ChatInterface({ expenses }: Props) {
   };
 
   return (
-    <div className="bg-card rounded-2xl border border-border shadow-card flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-6rem)]">
+    <div className="bg-card rounded-2xl border border-border shadow-card flex flex-col h-[calc(100vh-8.5rem)] h-[calc(100dvh-8.5rem)] md:h-[calc(100vh-6rem)] md:h-[calc(100dvh-6rem)]">
       <div className="p-4 border-b border-border flex items-center gap-3">
         <div className="w-9 h-9 rounded-xl gradient-primary flex items-center justify-center">
           <Sparkles className="w-4 h-4 text-primary-foreground" />

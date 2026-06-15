@@ -65,7 +65,7 @@ export default function DashboardLayout({ activeTab, onTabChange, children }: Pr
     .toUpperCase();
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#ecfeff_0%,#f8fafc_45%,#f1f5f9_100%)] flex">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#ecfeff_0%,#f8fafc_45%,#f1f5f9_100%)] flex flex-col md:flex-row">
       {/* Desktop sidebar */}
       <aside
         className={`hidden md:flex flex-col border-r border-slate-200/80 bg-white/80 backdrop-blur-xl p-3 transition-all duration-200 ${
@@ -158,9 +158,9 @@ export default function DashboardLayout({ activeTab, onTabChange, children }: Pr
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-sm pt-16"
+          className="md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-sm pt-16 flex flex-col"
         >
-          <nav className="p-4 space-y-2">
+          <nav className="flex-1 overflow-y-auto p-4 space-y-2">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
@@ -179,6 +179,39 @@ export default function DashboardLayout({ activeTab, onTabChange, children }: Pr
               </button>
             ))}
           </nav>
+
+          <div className="p-4 border-t border-slate-100 bg-slate-50/50 space-y-3">
+            <div className="rounded-xl bg-white border border-slate-200/80 p-3 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-teal-600 text-white text-sm font-semibold flex items-center justify-center">
+                {initials}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-sm text-slate-800 font-semibold truncate">{userName}</p>
+                <p className="text-xs text-slate-500">Member</p>
+              </div>
+            </div>
+
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <button className="w-full flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl text-sm font-medium text-rose-700 bg-rose-50 border border-rose-200 hover:bg-rose-100 transition-all">
+                  <LogOut className="w-5 h-5" />
+                  Logout
+                </button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="w-[92%] max-w-sm rounded-2xl p-6">
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-lg font-bold text-slate-900">Sign out?</AlertDialogTitle>
+                  <AlertDialogDescription className="text-sm text-slate-600">
+                    Are you sure you want to sign out of SpendPilot?
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="flex flex-row gap-3 mt-6">
+                  <AlertDialogCancel className="flex-1 mt-0 rounded-xl border-slate-200 text-slate-700">Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={logout} className="flex-1 rounded-xl bg-rose-600 hover:bg-rose-700 text-white">Sign Out</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </motion.div>
       )}
 
